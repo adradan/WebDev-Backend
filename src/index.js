@@ -16,6 +16,7 @@ async function init() {
 }
 
 app.use('/employees', routes.employees);
+app.use('/tasks', routes.tasks);
 
 
 app.listen(PORT, async () => {
