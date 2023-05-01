@@ -24,6 +24,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/employees', routes.employees);
+app.use('/tasks', routes.tasks);
 
 
 
