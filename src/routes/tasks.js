@@ -1,7 +1,9 @@
 const express = require("express");
+var bodyParser = require('body-parser')
 const { Task } = require("../models");
 
 const router = express.Router();
+const jsonParser = bodyParser.json()
 
 router.get("/", async (req, res) => {
     try {
@@ -14,6 +16,14 @@ router.get("/", async (req, res) => {
             message: "Error grabbing all tasks",
         });
     }
+});
+
+router.post("/add", jsonParser,  (req, res) => {
+    const data = req.body;
+    let newTask = Task.build(data);
+
+    console.log(newTask.id);
+    return res.json({msg: "new task added"});
 });
 
 module.exports = router;
