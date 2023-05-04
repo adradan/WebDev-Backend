@@ -18,12 +18,16 @@ router.get("/", async (req, res) => {
     }
 });
 
+//todo: MARTIN make route to get single task
+
 router.post("/add", jsonParser,  (req, res) => {
     const data = req.body;
     let newTask = Task.build(data);
-
+    newTask.save();
     console.log(newTask.id);
     return res.json({msg: "new task added"});
 });
 
+//todo: Make route to update/edit task
+//todo: Make route to delete task
 module.exports = router;
