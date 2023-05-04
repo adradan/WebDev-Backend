@@ -18,11 +18,10 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.get("/task/:id", jsonParser, async (req, res) => {
+router.get("/:id", async (req, res) => {
     try {
-        const userID = params.id;
-        const task = await Task.findOne({ where: { id: userID } });
-        console.log(userID);
+        const userID = req.params.id;
+        const task = await Task.findOne({where:{id:userID}});
         res.json(task);
     } catch (err) {
         console.error("ERROR: GET /task/");
