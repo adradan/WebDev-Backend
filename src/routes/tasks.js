@@ -18,7 +18,20 @@ router.get("/", async (req, res) => {
     }
 });
 
-//todo: MARTIN make route to get single task
+router.get("/task/:id", jsonParser, async (req, res) => {
+    try {
+        const userID = params.id;
+        const task = await Task.findOne({ where: { id: userID } });
+        console.log(userID);
+        res.json(task);
+    } catch (err) {
+        console.error("ERROR: GET /task/");
+        console.error(err);
+        res.status(500).json({
+            message: "Error task with given id",
+        });
+    }
+});
 
 router.post("/add", jsonParser,  (req, res) => {
     const data = req.body;
