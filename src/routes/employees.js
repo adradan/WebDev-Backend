@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
         const employees = await Employee.findAll();
         res.json(employees);
     } catch (err) {
-        console.error("ERROR: GET /tasks/");
+        console.error("ERROR: GET /employees/");
         console.error(err);
         res.status(500).json({
             message: "Error grabbing all employees",
