@@ -16,10 +16,10 @@ const Task = sequelize.define('Task', {
         type: DataTypes.STRING
     },
     taskPriorityLevel: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
     },
     taskCompletionStatus: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
     }
 },);
