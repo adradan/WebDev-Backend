@@ -48,9 +48,22 @@ router.post("/add", jsonParser,  (req, res) => {
 });
 
 //todo: Make route to update/edit task
-router.put("/edit/:id", jsonParser, (req, res) =>{
+router.put("/edit/:id", jsonParser, async (req, res) =>{
     const taskID = req.params.id;
     const updates = req.body;
+
+    if("assignedUser" in updates){
+        await Employee.findOne({where:{id:updates["assignedUser"]}})
+            .then(results =>{
+                if(!results){
+                    //if the user does not exist remove the assignedUser key from the updates
+                    delete updates["assignedUser"];
+                }else{
+                    //todo: remove the task from the user's tasks list 
+                }
+                console.log(results);
+            });
+    }
 
     try{
         Task.update(updates, {where:{id:taskID}});
