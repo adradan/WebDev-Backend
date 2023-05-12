@@ -27,7 +27,7 @@ router.get("/:id", async (req, res) => {
         console.error("ERROR: GET /task/");
         console.error(err);
         res.status(500).json({
-            message: "Error task with given id",
+            message: "Error getting task with given id",
         });
     }
 });
@@ -40,6 +40,19 @@ router.post("/add", jsonParser,  (req, res) => {
     return res.json({msg: "new task added"});
 });
 
-//todo: Make route to update/edit task
 //todo: Make route to delete task
+router.delete("/delete/:id", jsonParser, (req, res) => {
+    try {
+        const { id } = req.params;
+        tasks = Task.findAll(Task => Task.id != id)
+        res.json(tasks)
+    } catch (err) {
+        console.error("ERROR: DELETE /delete/:id");
+        console.error(err);
+        res.status(500).json({
+            message: "Error deleting task with given id",
+        });
+    }
+});
+
 module.exports = router;
