@@ -57,5 +57,18 @@ router.put('/edit/:id', async (req, res) => {
     }
 });
 
+router.post('/add', async (req, res) => {
+    try {
+        const newEmployee = req.body;
+        await Employee.create(newEmployee);
+        res.json(newEmployee);
+    } catch (err) {
+        console.error('ERROR: POST /employees/add');
+        console.error(err);
+        res.status(500).json({
+            message: "Error adding employee",
+        });
+    }
+});
 
 module.exports = router;
