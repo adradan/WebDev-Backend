@@ -48,7 +48,7 @@ router.post("/add", jsonParser,  (req, res) => {
 });
 
 //todo: Make route to update/edit task
-router.put("/edit/:id", jsonParser, async (req, res) =>{
+router.put("/editTask/:id", jsonParser, async (req, res) =>{
     const taskID = req.params.id;
     const updates = req.body;
 
