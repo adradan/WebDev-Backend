@@ -36,6 +36,26 @@ router.get("/:id", async (req, res) => {
             message: `Error grabbing employee ID ${id}`,
         });
     }
-})
+});
+
+router.put('/edit/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const editedEmployee = req.body;
+        await Employee.update(editedEmployee, {
+            where: {
+                id,
+            }
+        });
+        res.json(editedEmployee);
+    } catch (err) {
+        console.error(`ERROR: PUT /employees/edit/${id}`);
+        console.error(err);
+        res.status(500).json({
+            message: `Error editing employee ID ${id}`,
+        });
+    }
+});
+
 
 module.exports = router;
