@@ -28,8 +28,6 @@ app.use(express.json());
 app.use('/employees', routes.employees);
 app.use('/tasks', routes.tasks);
 
-
-
 app.listen(PORT, async () => {
     console.log(`App listening at localhost:${PORT}`);
     await init();
