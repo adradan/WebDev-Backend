@@ -27,7 +27,7 @@ router.get("/:id", async (req, res) => {
         console.error("ERROR: GET /task/");
         console.error(err);
         res.status(500).json({
-            message: "Error task with given id",
+            message: "Error getting task with given id",
         });
     }
 });
@@ -59,7 +59,7 @@ router.put("/editTask/:id", jsonParser, async (req, res) =>{
                     //if the user does not exist remove the assignedUser key from the updates
                     delete updates["assignedUser"];
                 }else{
-                    //todo: remove the task from the user's tasks list 
+                    //todo: remove the task from the user's tasks list
                 }
                 console.log(results);
             });
@@ -68,7 +68,7 @@ router.put("/editTask/:id", jsonParser, async (req, res) =>{
     try{
         Task.update(updates, {where:{id:taskID}});
         res.send("updated the task");
-        return; 
+        return;
     }catch(err){
         console.error(err);
         res.status(500).json({
@@ -78,4 +78,18 @@ router.put("/editTask/:id", jsonParser, async (req, res) =>{
 });
 
 //todo: Make route to delete task
+router.delete("/deleteTask/:id", jsonParser, (req, res) => {
+    try {
+        const taskID = req.params.id;
+        Task.destroy({where:{id:taskID}});
+        res.send("Deleted the task with the given ID")
+    } catch (err) {
+        console.error("ERROR: DELETE /delete/:id");
+        console.error(err);
+        res.status(500).json({
+            message: "Error deleting task with given id",
+        });
+    }
+});
+
 module.exports = router;
