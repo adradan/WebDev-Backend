@@ -41,7 +41,7 @@ router.post("/add", jsonParser,  (req, res) => {
 });
 
 //todo: Make route to delete task
-router.delete("/delete/:id", jsonParser, (req, res) => {
+router.delete("/deleteTask/:id", jsonParser, (req, res) => {
     try {
         const taskID = req.params.id;
         Task.destroy({where:{id:taskID}});
