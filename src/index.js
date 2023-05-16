@@ -23,6 +23,8 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.use(express.json());
+
 app.use('/employees', routes.employees);
 app.use('/tasks', routes.tasks);
 
