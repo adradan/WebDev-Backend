@@ -38,7 +38,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.put('/edit/:id', async (req, res) => {
+router.put('/editEmployee/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const editedEmployee = req.body;
@@ -71,7 +71,7 @@ router.post('/add', async (req, res) => {
     }
 });
 
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/deleteEmployee/:id', async (req, res) => {
     const { id } = req.params;
     try {
         await Employee.destroy({

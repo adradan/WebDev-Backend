@@ -1,9 +1,7 @@
 const express = require("express");
-var bodyParser = require('body-parser')
 const { Task, Employee } = require("../models");
 
 const router = express.Router();
-const jsonParser = bodyParser.json()
 
 router.get("/", async (req, res) => {
     try {
@@ -32,7 +30,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.post("/add", jsonParser,  (req, res) => {
+router.post("/add",  (req, res) => {
     try{
         const data = req.body;
         let newTask = Task.build(data);
@@ -48,7 +46,7 @@ router.post("/add", jsonParser,  (req, res) => {
 });
 
 //todo: Make route to update/edit task
-router.put("/editTask/:id", jsonParser, async (req, res) =>{
+router.put("/editTask/:id", async (req, res) =>{
     const taskID = req.params.id;
     const updates = req.body;
 
@@ -78,7 +76,7 @@ router.put("/editTask/:id", jsonParser, async (req, res) =>{
 });
 
 //todo: Make route to delete task
-router.delete("/deleteTask/:id", jsonParser, (req, res) => {
+router.delete("/deleteTask/:id", (req, res) => {
     try {
         const taskID = req.params.id;
         Task.destroy({where:{id:taskID}});
