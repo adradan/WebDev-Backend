@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 const { getConnection } = require('../sql');
 
 const sequelize = getConnection();
@@ -24,19 +24,19 @@ const Task = sequelize.define('Task', {
         references: {
             model: Employee,
             key: 'id',
-        }
+        },
     },
     taskDescription: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
     },
     taskPriorityLevel: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
     },
     taskCompletionStatus: {
         type: DataTypes.STRING,
-        allowNull: false
-    }
-},);
+        allowNull: false,
+    },
+});
 
 Task.belongsTo(Employee, {
     foreignKey: 'assignedUser',
@@ -50,4 +50,4 @@ Employee.hasMany(Task, {
 module.exports = {
     Employee,
     Task,
-}
+};
