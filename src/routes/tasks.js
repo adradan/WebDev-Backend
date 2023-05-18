@@ -64,9 +64,10 @@ router.put('/editTask/:id', async (req, res) => {
         );
     }
 
-    try {
-        Task.update(updates, { where: { id: taskID } });
-        res.send('updated the task');
+    try{
+        await Task.update(updates, {where:{id:taskID}});
+        const task = await Task.findOne({where:{id:taskID}});
+        res.json(task);
         return;
     } catch (err) {
         console.error(err);
