@@ -1,32 +1,34 @@
-const express = require("express");
-const { Employee, Task } = require("../models");
+const express = require('express');
+const { Employee, Task } = require('../models');
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const employees = await Employee.findAll();
         res.json(employees);
     } catch (err) {
-        console.error("ERROR: GET /employees/");
+        console.error('ERROR: GET /employees/');
         console.error(err);
         res.status(500).json({
-            message: "Error grabbing all employees",
+            message: 'Error grabbing all employees',
         });
     }
 });
 
-router.get("/:id", async (req, res) => {
+router.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const employee = await Employee.findAll({
             where: {
                 id,
             },
-            include: [{
-                model: Task,
-                as: 'tasks',
-            }],
+            include: [
+                {
+                    model: Task,
+                    as: 'tasks',
+                },
+            ],
         });
         res.json(employee);
     } catch (err) {
@@ -45,7 +47,7 @@ router.put('/editEmployee/:id', async (req, res) => {
         await Employee.update(editedEmployee, {
             where: {
                 id,
-            }
+            },
         });
         res.json(editedEmployee);
     } catch (err) {
@@ -66,7 +68,7 @@ router.post('/add', async (req, res) => {
         console.error('ERROR: POST /employees/add');
         console.error(err);
         res.status(500).json({
-            message: "Error adding employee",
+            message: 'Error adding employee',
         });
     }
 });
@@ -77,7 +79,7 @@ router.delete('/deleteEmployee/:id', async (req, res) => {
         await Employee.destroy({
             where: {
                 id,
-            }
+            },
         });
         res.json({
             deletedId: id,
@@ -89,6 +91,6 @@ router.delete('/deleteEmployee/:id', async (req, res) => {
             message: 'Error removing employee',
         });
     }
-})
+});
 
 module.exports = router;
