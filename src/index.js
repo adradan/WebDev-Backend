@@ -1,8 +1,10 @@
 const express = require('express');
 const { getConnection, startConnection} = require("./sql");
 const routes = require('./routes');
+var cors = require('cors');
 
 const app = express();
+app.use(cors());
 const PORT = 8080;
 
 async function syncDatabase() {
