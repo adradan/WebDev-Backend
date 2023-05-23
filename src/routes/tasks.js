@@ -30,7 +30,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/add', (req, res) => {
+router.post('/', (req, res) => {
     try {
         const data = req.body;
         let newTask = Task.build(data);
@@ -46,7 +46,7 @@ router.post('/add', (req, res) => {
 });
 
 //todo: Make route to update/edit task
-router.put('/editTask/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     const taskID = req.params.id;
     const updates = req.body;
 
@@ -78,7 +78,7 @@ router.put('/editTask/:id', async (req, res) => {
 });
 
 //todo: Make route to delete task
-router.delete('/deleteTask/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     try {
         const taskID = req.params.id;
         Task.destroy({ where: { id: taskID } });

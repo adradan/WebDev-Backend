@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.put('/editEmployee/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const editedEmployee = req.body;
@@ -59,7 +59,7 @@ router.put('/editEmployee/:id', async (req, res) => {
     }
 });
 
-router.post('/add', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const newEmployee = req.body;
         await Employee.create(newEmployee);
@@ -73,7 +73,7 @@ router.post('/add', async (req, res) => {
     }
 });
 
-router.delete('/deleteEmployee/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     const { id } = req.params;
     try {
         await Employee.destroy({
