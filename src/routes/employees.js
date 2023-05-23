@@ -62,8 +62,8 @@ router.put('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const newEmployee = req.body;
-        await Employee.create(newEmployee);
-        res.json(newEmployee);
+        const created = await Employee.create(newEmployee);
+        res.json(created);
     } catch (err) {
         console.error('ERROR: POST /employees/add');
         console.error(err);
@@ -80,6 +80,7 @@ router.delete('/:id', async (req, res) => {
             where: {
                 id,
             },
+            cascade: true,
         });
         res.json({
             deletedId: id,

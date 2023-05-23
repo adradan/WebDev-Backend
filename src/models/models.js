@@ -25,6 +25,7 @@ const Task = sequelize.define('Task', {
             model: Employee,
             key: 'id',
         },
+        onDelete: 'cascade'
     },
     taskDescription: {
         type: DataTypes.STRING,
