@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
         let newTask = Task.build(data);
         newTask.save();
         console.log(newTask.id);
-        return res.json({ msg: 'new task added' });
+        return res.json(newTask);
     } catch (err) {
         console.error(err);
         res.status(500).json({
